@@ -1,3 +1,4 @@
+from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout, QDialog, QLabel
 import subprocess
 
@@ -45,6 +46,7 @@ get_power_mode_button = QPushButton("Get power mode")
 
 window.resize(400, 300)
 window.setWindowTitle("Power Mods")
+window.setWindowIcon(QIcon("source/icon.jpg"))
 balanced_button.clicked.connect(balanced_button_clicked)
 power_save_button.clicked.connect(power_save_button_clicked)
 get_power_mode_button.clicked.connect(get_mode_button_clicked)
