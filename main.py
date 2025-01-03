@@ -2,9 +2,13 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QVBoxLayout, QDialog, QLabel
 import subprocess
 
+performance_script = "powerprofilesctl set performance"
 balanced_script = "powerprofilesctl set balanced"
 power_save_script = "powerprofilesctl set power-saver"
 power_mode = "powerprofilesctl get"
+
+def performance_button_clicked():
+    subprocess.run(performance_script, shell=True)
 
 def balanced_button_clicked():
     subprocess.run(balanced_script, shell=True)
@@ -40,6 +44,7 @@ def get_mode_button_clicked():
 app = QApplication([])
 window = QWidget()
 layout = QVBoxLayout()
+performance_button = QPushButton("Set performance mode")
 balanced_button = QPushButton("Set balanced mode")
 power_save_button = QPushButton("Set power saver mode")
 get_power_mode_button = QPushButton("Get power mode")
@@ -47,9 +52,11 @@ get_power_mode_button = QPushButton("Get power mode")
 window.resize(400, 300)
 window.setWindowTitle("Power Mods")
 window.setWindowIcon(QIcon("source/icon.jpg"))
+performance_button.clicked.connect(performance_button_clicked)
 balanced_button.clicked.connect(balanced_button_clicked)
 power_save_button.clicked.connect(power_save_button_clicked)
 get_power_mode_button.clicked.connect(get_mode_button_clicked)
+layout.addWidget(performance_button)
 layout.addWidget(balanced_button)
 layout.addWidget(power_save_button)
 layout.addWidget(get_power_mode_button)
